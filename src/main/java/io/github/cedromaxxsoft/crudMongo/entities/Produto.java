@@ -1,5 +1,6 @@
 package io.github.cedromaxxsoft.crudMongo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.cedromaxxsoft.crudMongo.entities.enums.Categorias;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,19 +16,20 @@ import java.time.LocalDate;
 public class Produto {
 
     @Id
-    private String ID;
-    private String Nome;
-    private String Descrição;
-    private String Marca;
-    private Categorias Categoria;
-    private BigDecimal Preço;
-    private Integer Avaliação;
-    //avaliação do produto (em estrelas);
-    private String Comentários;
-    //comentários dos clientes sobre o produto;
+    private String id;
+    private String nome;
+    private String descricao;
+    private String marca;
+    private Categorias categoria;
+    private BigDecimal preco;
+    private Integer avaliacao;
+
+    private String comentarios;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate createdAt;
 
-    public Produto(LocalDate createdAt) {
-        this.createdAt = LocalDate.now();
+    public Produto(String nome, String comentarios) {
+        this.nome = nome;
+        this.comentarios = comentarios;
     }
 }
